@@ -82,7 +82,7 @@ def measure_time_memory(func, *args):
     tracemalloc.stop()
     return end - start, peak / 1024
 
-size = [10**2, 10**3, 5*10**3, 10**4, 5*10**4]
+size = [10**2, 10**3, 5*10**3, 10**4]
 
 print("Поиск в массиве (in_mass):")
 for n in size:
@@ -101,7 +101,7 @@ for n in size:
 
 print("-" * 50)
 
-print("Бинарный поиск (bin_search) — массив предварительно сортируется:")
+print("Бинарный поиск (bin_search):")
 for n in size:
     mass = sorted(generate_array(n))
     search_val = random.randint(1, 1000)
