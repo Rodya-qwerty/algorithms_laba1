@@ -80,7 +80,7 @@ def generate_array(n):
         arr.append(random.randint(0, 10000))
     return arr
 
-# Замер времяни 
+# Замер времени и памяти
 def measure_time_memory(func, *args):
     tracemalloc.start()
     start = time.perf_counter()
