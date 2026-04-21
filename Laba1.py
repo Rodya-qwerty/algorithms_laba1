@@ -3,6 +3,7 @@ import time
 import tracemalloc
 import sys
 
+# 1 Проверка наличия элемента в массиве
 def in_mass(mass: list, search: int) -> bool:
     if len(mass) == 0:
         return False
@@ -11,6 +12,7 @@ def in_mass(mass: list, search: int) -> bool:
             return True
     return False
 
+# 2. Поиск второго максимального элемента
 def second_max(mass: list) -> int:
     if len(mass) < 2 or len(set(mass)) == 1:
         return False
@@ -27,6 +29,7 @@ def second_max(mass: list) -> int:
             max2 = mass[i]
     return max2
 
+# Бинарный поиск
 def bin_search(mass: list, search: int) -> bool:
     if len(mass) == 0:
         return False
@@ -40,6 +43,7 @@ def bin_search(mass: list, search: int) -> bool:
         return bin_search(mass[(l + r) // 2 + 1:r + 1], search)
     return False
 
+# 4. Построение таблицы умножения
 def create_table(n: int) -> list:
     mass = []
     for i in range(1, n + 1):
@@ -49,6 +53,7 @@ def create_table(n: int) -> list:
         mass.append(temp)
     return mass
 
+# 5 Бабл сорт
 def babl_sort(mass: list) -> list:
     for i in range(0, len(mass) - 1):
         for j in range(len(mass) - 1 - i):
@@ -58,6 +63,7 @@ def babl_sort(mass: list) -> list:
                 mass[j + 1] = temp
     return mass
 
+# 5 Быстрая сортировка
 def Quick_sort(mass: list) -> list:
     if len(mass) <= 1:
         return mass
@@ -67,12 +73,14 @@ def Quick_sort(mass: list) -> list:
     right = [i for i in mass if i > piv]
     return Quick_sort(left) + pivot + Quick_sort(right)
 
+# Генерация массива случайными числами
 def generate_array(n):
     arr = []
     for i in range(n):
         arr.append(random.randint(0, 10000))
     return arr
 
+# Замер времяни 
 def measure_time_memory(func, *args):
     tracemalloc.start()
     start = time.perf_counter()
