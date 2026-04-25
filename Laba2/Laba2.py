@@ -11,7 +11,7 @@ class Node:
         self.genre = genre
         self.rating = rating 
         self.next = None    
-        self.povtor = False
+
 
 
 class Music:
