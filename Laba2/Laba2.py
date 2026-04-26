@@ -143,7 +143,7 @@ class Music:
             print("Нечего сохранять в файл")
             return 
 
-        with open("Laba2\\music_save.csv", "w", newline='', encoding='utf-8') as file:
+        with open("music_save.csv", "w", newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
 
             writer.writerow(["name", "time", "genre", "rating"])
@@ -155,7 +155,7 @@ class Music:
             print("Плейлист записан")
     
     def see_table(self):
-        table = pandas.read_csv('Laba2\\music_save.csv')
+        table = pandas.read_csv('music_save.csv')
         print(table)
 
 
@@ -166,8 +166,8 @@ def main():
     # создание объекта и его заполнение 
     my_playlist = Music()
     my_playlist.append_to_end("Bohemian Rhapsody", 354, "Rock", 5)
-    my_playlist.append_to_end("Imagine", 183, "Pop", 5)
-    my_playlist.append_to_end("Stairway to Heaven", 482, "Rock", 5)
+    my_playlist.append_to_end("Imagine", 183, "Pop", 4)
+    my_playlist.append_to_end("Stairway to Heaven", 482, "Rock", 3)
 
     # "Проигрыш" ввёденных песен, сохранение в файл и просмотр в таблице 
     my_playlist.play_all()
