@@ -176,7 +176,6 @@ class Music {
 };
 
 int main(){
-    
     srand(time(nullptr));
     setlocale(LC_ALL, "");
     Music playlist;
@@ -187,6 +186,6 @@ int main(){
     
     playlist.print();
 
-    playlist.save_to_file();
+    // playlist.save_to_file();
     return 0;
 }

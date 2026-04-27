@@ -158,22 +158,99 @@ class Music:
         table = pandas.read_csv('music_save.csv')
         print(table)
 
+    def read_csv(self):
+        file = pandas.read_csv("music_save.csv")
+        print("Прочитанные данные с файла и добавленные в список:")
+        print("-------------------------")
+        for i in range(file.shape[0]):
+            print('name = ',file.loc[i,file.columns] ['name'])
+            print('time = ',file.loc[i,file.columns] ['time'])
+            print('genre = ',file.loc[i,file.columns] ['genre'])
+            print('rating = ',file.loc[i,file.columns] ['rating'])
+            self.append_to_end(
+                               file.loc[i,file.columns] ['name'],
+                               file.loc[i,file.columns] ['time'],
+                               file.loc[i,file.columns] ['genre'],
+                               file.loc[i,file.columns] ['rating']
+                               )
+            print("-------------------------")
 
-        
+    def report(self):
+        all_time = 0 
+        sum_rating = 0
+        temp = self.head
+        for i in range(self.size):
+            all_time+=temp.time
+            sum_rating+=temp.rating
+        print("Кол-во треков: ", self.size)
+        print("Общее время: ", all_time)
+        print("Медианный рейтинг: ", sum_rating//self.size )
 
+    def search_genre(self):
+        search = input("Введите жанр, который вы хотите найти: ")
+        table = pandas.read_csv('music_save.csv')
+        print(table.loc[ table.loc[:,'genre'] == search ])
+    
+    def search_deap_time(self):
+        pass
+
+    def search_reating(self):
+        search = input("Введите рейтинг, не ниже которого должен быть поиск: ")
+        table = pandas.read_csv('music_save.csv')
+        print(table.loc[ table.loc[:,'rating'] >= search ])
+    
 
 def main():      
-    # создание объекта и его заполнение 
+    # Создание плейлиста
     my_playlist = Music()
+    
+    # Добавление треков
     my_playlist.append_to_end("Bohemian Rhapsody", 354, "Rock", 5)
     my_playlist.append_to_end("Imagine", 183, "Pop", 4)
     my_playlist.append_to_end("Stairway to Heaven", 482, "Rock", 3)
-
-    # "Проигрыш" ввёденных песен, сохранение в файл и просмотр в таблице 
+    my_playlist.prepend("Shape of You", 233, "Pop", 5)  # Добавление в начало
+    my_playlist.append_to_end("Hotel California", 391, "Rock", 5)
+    
+    # Демонстрация работы методов
+    print("Исходный плейлист:")
+    my_playlist.get_set()
+    
+    # Перемешивание
+    print("\nПеремешанный плейлист:")
+    my_playlist.shak()
+    my_playlist.get_set()
+    
+    # Удаление трека
+    my_playlist.dell("Imagine")
+    print("\nПосле удаления 'Imagine':")
+    my_playlist.get_set()
+    
+    # Режимы повтора
+    print("\n--- Тестирование режимов повтора ---")
+    my_playlist.set_repeat_mode("one")
+    print("Воспроизведение с повтором одного трека (3 секунды):")
+    # my_playlist.play_all()  # Раскомментировать для теста
+    
+    my_playlist.set_repeat_mode("all")
+    print("Режим повтора всего плейлиста установлен")
+    
+    my_playlist.set_repeat_mode("none")
+    print("\n--- Воспроизведение без повтора ---")
     my_playlist.play_all()
+    
+    # Сохранение и загрузка
+    print("\n--- Работа с файлами ---")
     my_playlist.safe_in_file()
+    print("\nТаблица из файла:")
     my_playlist.see_table()
-
+    
+    # Статистика
+    print("\n--- Статистика ---")
+    my_playlist.report()
+    
+    # Поиск по жанру
+    print("\n--- Поиск по жанру ---")
+    my_playlist.search_genre()
 
 if __name__ == "__main__":
     main()
